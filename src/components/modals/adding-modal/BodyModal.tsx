@@ -5,9 +5,9 @@ import { selectTemporaryProducts } from "@/redux/slices/productsSlice";
 import s from "./Modal.module.scss";
 import useOpenList from "@/hooks/modal/useOpenList";
 import ProductItemModal from "./ProductItemModal";
-import AddressModal from "./addressModal";
+import AddressModal from "./AddressModal";
 import CommentModal from "./CommentModal";
-import PayMentSelect from "./payMentSelect";
+import PayMentSelect from "./PayMentSelect";
 import { selectEditModal } from "@/redux/slices/modalSlice";
 import StatusSelect from "./StatusSelect";
 
