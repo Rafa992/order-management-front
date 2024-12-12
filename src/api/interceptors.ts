@@ -12,7 +12,7 @@ const options = {
   Headers: {
     'Content-Type': 'application/json'
   },
-  withCredentials: false // добавление куки
+  withCredentials: true // добавление куки
 }
 
 const axiosClassic = axios.create(options)
