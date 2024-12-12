@@ -21,6 +21,7 @@ export default function PaletteModal() {
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      sx={{padding: '15px'}}
     >
       <Box className={s.palette}>
         <h2>Выберите основной цвет</h2>

@@ -17,12 +17,12 @@ export const saveTokenStorage = (accessToken: string, refreshToken: string) => {
   Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, {
     domain: domain,
     sameSite: "none",
-    secure: process.env.NODE_ENV === "production",
+    // secure: process.env.NODE_ENV === "production",
   });
   Cookies.set(EnumTokens.REFRESH_TOKEN, refreshToken, {
     domain: domain,
     sameSite: "none",
-    secure: process.env.NODE_ENV === "production",
+    // secure: process.env.NODE_ENV === "production",
   });
 };
 

@@ -38,6 +38,7 @@ export default function BasicModal() {
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      sx={{padding: '15px'}}
     >
       <Box className={s.modal}>
       <CssBaseline /> 

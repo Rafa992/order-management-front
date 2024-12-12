@@ -24,6 +24,7 @@ export default function ConfirmModal() {
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      sx={{padding: '15px'}}
     >
       <Box className={s.confirmModal}>
         <h2>Вы действительно хотите удалить этот заказ?</h2>
