@@ -1,0 +1,46 @@
+@import '@/assets/main.scss'; 
+
+.main {
+    padding: 0 15px 20px !important; 
+    &_filterBgClose {
+        position: fixed;
+        inset: 0;
+        z-index: 99;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    &_filterIcons {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        display: none;
+        margin: 20px 0;
+        @include media(992){
+            display: flex;
+        }
+        &_btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            span {
+                font-size: 20px;
+                color: var(--baseColorText);
+                @include media(380){
+                    font-size: 16px;
+                }
+            }
+            
+        }
+    }
+    &_button {
+        width: 200px;
+        background: var(--baseColor);
+        color: var(--whiteTextColor);
+        margin-top: 20px;
+        font-size: 16px;
+        font-weight: 700;
+        @include media(400){
+            font-size: 12px;
+            width: 150px;
+        }
+    }
+}

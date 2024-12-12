@@ -1,0 +1,265 @@
+@import '@/assets/main.scss'; 
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 800px;
+    width: 100%;
+    min-height: 400px;
+    background: var(--background);
+    border: 4px solid var(--baseColor);
+    overflow: hidden;
+    box-shadow: 0 0 5px black;
+    @include media(500){
+        height: 400px;
+    }
+}
+
+.mainModal {
+    background: var(--background) !important;
+}
+
+.headerModal {
+    &_header {
+        padding-right: 0 !important;
+        background: var(--baseColor) !important;
+    }
+    &_toolbar {
+        background: var(--baseColor);
+        
+    }
+    &_iconButton {
+        margin-right: 15px;
+        color: var(--whiteTextColor);
+    }
+}
+
+.leftModal {
+    transition: 200ms linear !important;
+    background: var(--background) !important;
+}
+
+.topLeftModal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: var(--background);
+    border-bottom: 1px solid var(--lineColor);
+
+    &_textField {
+        margin-left: 45px;
+        input {
+            color: var(--blackTextColor);
+        }
+    }
+}
+
+.listLeftModal {
+    padding: 0 !important;
+    background: var(--background);
+    &_item {
+        padding-left: 0;
+    }
+    &_price {
+        font-size: 13px;
+        color: var(--baseColorText);
+    }
+    &_title {
+        width: 50%;
+        font-size: 13px !important;
+        color: var(--blackTextColor);
+        cursor: pointer;
+        span {
+            display: block;
+            padding-left: 15px;
+            width: 90%;
+            font-size: 14px;
+            font-weight: 700;
+        }
+    }
+}
+
+.checkbox {
+    color: var(--baseColorText) !important;
+    width: 30px !important;
+    &.Mui-checked {
+        color: var(--baseColorText) !important;
+    }
+}
+
+.bodyModal {
+    flex-grow: 1;
+    padding: 80px 20px 30px;
+    transition: 200ms linear !important;
+    overflow-y: auto;
+    height: 400px;
+    &_block {
+        display: flex;
+        gap: 20px;
+        @include media(500){
+            flex-direction: column;
+            gap: 0;
+        }
+        &_textFields {
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 30px;
+            @include media(500){
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            & label {
+                font-size: 12px;
+            }
+        }
+        &_selects {
+            width: 35%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 30px;
+            @include media(500){
+                width: 50%;
+                margin-bottom: 10px;
+            }
+            @include media(350){
+                width: 70%;
+                margin-bottom: 10px;
+            }
+            & label {
+                font-size: 12px;
+            }
+        }
+    }
+    &_address, &_comment {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        &_input {
+            width: 100%;
+            input {
+            font-size: 13px;
+            color: var(--blackTextColor);
+            }
+        }
+    }
+    &_empty {
+        font-size: 30px;
+        font-weight: 900;
+        text-align: center;
+        color: var(--baseColorText);
+    }
+    &_item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include media(500){
+            padding: 5px 0;
+            border-bottom: 1px solid var(--baseColorText);
+        }
+        &_title {
+            color: var(--blackTextColor);
+            font-size: 22px;
+            @include media(500){
+                font-size: 15px;
+            }
+            @include media(400){
+                font-size: 13px;
+            }
+        }
+    }
+    &_left {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 65%;
+    }
+    &_counterBlock {
+        display: flex;
+        align-items: center;
+        @include media(500){
+            button {
+                padding: 0;
+            }
+        }
+    }
+    &_removeIcon {
+        color: red;
+    }
+    &_amountText {
+        width: 40px;
+        color: var(--blackTextColor);
+        font-size: 11px;
+        text-align: center;
+        @include media(500){
+            font-size: 10px;
+        }
+    }
+    &_amount {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--blackTextColor);
+        @include media(500){
+            font-size: 14px;
+        }
+        @include media(400){
+            font-size: 13px;
+        }
+    }
+    &_addIcon {
+        color: green;
+    }
+    &_right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--blackTextColor);
+        @include media(500){
+            p {
+                font-size: 14px !important;
+            }
+            button {
+                padding: 0;
+            }
+        }
+        @include media(400){
+            p {
+                font-size: 12px !important;
+            }
+        }
+    }
+}
+
+.saveButtons {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    justify-content: flex-end;
+    padding: 20px;
+    button {
+        color: var(--whiteTextColor);
+    }
+}
+
+.paymentModal {
+    & label {
+        font-size: 12px;
+    }
+    div {
+        font-size: 14px !important;
+    }
+    
+    &_select {
+        &::after {
+            border-bottom-color: var(--baseColorText);
+        }
+    }
+}
