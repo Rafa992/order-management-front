@@ -11,10 +11,8 @@ import { saveTokenStorage } from "@/services/auth-token.service";
 import { useRouter } from "next/navigation";
 import { DASHBOARD_PAGES } from "@/config/pages-url.config";
 import Link from "next/link";
-import s from '../Login.module.scss';
+import s from '../Auth.module.scss';
 import FieldPassword from "@/components/ui/field/FieldPassword";
-import { useAppSelector } from "@/redux/store";
-import { selectColor } from "@/redux/slices/colorSlice";
 import useInitialError from "@/hooks/error/useInitialError";
 
 const LoginPage = () => {

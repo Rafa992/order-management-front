@@ -22,7 +22,7 @@
         align-items: center;
         justify-content: center;
         gap: 10px;
-        color: gray;
+        color: var(--blackTextColor);
         &_question {
             @include media(400){
                 font-size: 12px;
