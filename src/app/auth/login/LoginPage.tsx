@@ -14,6 +14,7 @@ import Link from "next/link";
 import s from '../Auth.module.scss';
 import FieldPassword from "@/components/ui/field/FieldPassword";
 import useInitialError from "@/hooks/error/useInitialError";
+import { AxiosError } from "axios";
 
 const LoginPage = () => {
   const { push } = useRouter();
@@ -35,7 +36,13 @@ const LoginPage = () => {
       initialError(true, 'Вы успешно вошли в систему!', 'success');
       push(DASHBOARD_PAGES.HOME);
     } catch (error) {
-      console.log("Error while trying to login", error);
+      if (error instanceof AxiosError) {
+        initialError(true, `Ошибка: ${error.response?.data?.message || error.message}`, 'error');
+      } else if (error instanceof Error) {
+        initialError(true, `Ошибка: ${error.message}`, 'error');
+      } else {
+        initialError(true, 'Неизвестная ошибка', 'error');
+      }
     }
   };
 

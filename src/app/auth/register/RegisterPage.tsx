@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { DASHBOARD_PAGES } from "@/config/pages-url.config";
 import s from '../Auth.module.scss'
 import useInitialError from "@/hooks/error/useInitialError";
+import { AxiosError } from "axios";
 
 const RegisterPage = () => {
   const [register, { isLoading, error, data }] = useRegisterMutation();
@@ -30,7 +31,13 @@ const RegisterPage = () => {
       initialError(true, 'Вы успешно вошли в систему!', 'success');
       push(DASHBOARD_PAGES.HOME);
     } catch (error) {
-      console.log("Error while trying to sign up", error);
+      if (error instanceof AxiosError) {
+        initialError(true, `Ошибка: ${error.response?.data?.message || error.message}`, 'error');
+      } else if (error instanceof Error) {
+        initialError(true, `Ошибка: ${error.message}`, 'error');
+      } else {
+        initialError(true, 'Неизвестная ошибка', 'error');
+      }
     }
   };
 
