@@ -21,7 +21,7 @@ export default function Header() {
   const logout = () => {
     console.log('сработал logout', DASHBOARD_PAGES.HOME);
     
-    push(DASHBOARD_PAGES.HOME);
+    push(DASHBOARD_PAGES.LOGIN);
     removeFromStorage();
   }
 
