@@ -12,6 +12,7 @@ export const getAccessToken = () => {
 };
 
 export const saveTokenStorage = (accessToken: string, refreshToken: string) => {
+  const domain = process.env.NODE_ENV === "production" ? "order-management-indol.vercel.app" : "localhost";
 
 
   Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, {
@@ -27,6 +28,7 @@ export const saveTokenStorage = (accessToken: string, refreshToken: string) => {
 };
 
 export const removeFromStorage = () => {
+  const domain = process.env.NODE_ENV === "production" ? "order-management-indol.vercel.app" : "localhost";
 
   Cookies.remove(EnumTokens.ACCESS_TOKEN, {
     domain: domain,
