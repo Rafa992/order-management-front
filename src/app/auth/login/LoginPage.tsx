@@ -15,20 +15,26 @@ import s from '../Auth.module.scss';
 import FieldPassword from "@/components/ui/field/FieldPassword";
 import useInitialError from "@/hooks/error/useInitialError";
 import { AxiosError } from "axios";
+import CustomSnackbar from "@/components/ui/customsComponents/CustomSnackbar";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { selectErrorMessage, selectErrorStatus, selectSeverity, setErrorStatus } from "@/redux/slices/errorSlice";
 
 const LoginPage = () => {
+  const dispatch = useAppDispatch();
   const { push } = useRouter();
 
   const [login, { isLoading, error, data }] = useLoginMutation();
   const methods = useForm<Login>();
   const { reset } = methods;
 
-  const {initialError} = useInitialError();
+  const errorStatus = useAppSelector(selectErrorStatus);
+  const errorMessage = useAppSelector(selectErrorMessage);
+  const severity = useAppSelector(selectSeverity);
 
+  const {initialError} = useInitialError();
+  const handleCloseSnackbar = () => dispatch(setErrorStatus(false));
 
   const handleSubmit = async (data: Login) => {
-
-
     try {
       const res = await login(data).unwrap();
       saveTokenStorage(res.accessToken, res.refreshToken);
@@ -91,6 +97,14 @@ const LoginPage = () => {
           <Link href="/auth/register">Sign up</Link>
         </span>
       </p>
+      <CustomSnackbar
+        message={errorMessage}
+        severity={severity}
+        open={errorStatus}
+        onClose={handleCloseSnackbar}
+        autoHideDuration={3000}
+        position={{ vertical: "bottom", horizontal: "right" }}
+      />
     </div>
   );
 };
