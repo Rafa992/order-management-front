@@ -44,7 +44,10 @@ const LoginPage = () => {
       push(DASHBOARD_PAGES.HOME);
     } catch (error) {
       const err = errorCatch(error);
-      initialError(true, err, 'success');
+      console.log('error', error);
+      console.log('err', err);
+      
+      initialError(true, err, 'error');
       // if (error instanceof AxiosError) {
       //   initialError(true, `Ошибка: ${error.response?.data?.message || error.message}`, 'error');
       // } else if (error instanceof Error) {
