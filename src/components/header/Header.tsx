@@ -19,6 +19,8 @@ export default function Header() {
   const [settings, setSettings] = useState(false);
 
   const logout = () => {
+    console.log('сработал logout');
+    
     removeFromStorage();
     push(DASHBOARD_PAGES.HOME);
   }

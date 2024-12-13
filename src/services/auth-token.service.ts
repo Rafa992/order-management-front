@@ -27,6 +27,8 @@ export const saveTokenStorage = (accessToken: string, refreshToken: string) => {
 };
 
 export const removeFromStorage = () => {
+  console.log('сработал removeFromStorage');
+
   Cookies.remove(EnumTokens.ACCESS_TOKEN);
   Cookies.remove(EnumTokens.REFRESH_TOKEN);
 };
