@@ -92,14 +92,14 @@ const LoginPage = () => {
           <Link href="/auth/register">Sign up</Link>
         </span>
       </p>
-      <CustomSnackbar
+      {/* <CustomSnackbar
         message={errorMessage}
         severity={severity}
         open={errorStatus}
         onClose={handleCloseSnackbar}
         autoHideDuration={3000}
         position={{ vertical: "bottom", horizontal: "right" }}
-      />
+      /> */}
     </div>
   );
 };
