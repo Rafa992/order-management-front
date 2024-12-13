@@ -1,5 +1,5 @@
 class DASHBOARD {
-    HOME = process.env.NODE_ENV === "production" ? 'https://order-management-indol.vercel.app/' : '/'
+    HOME = '/'
     LOGIN = '/auth/login'
     REGISTER = '/auth/register'
 }
