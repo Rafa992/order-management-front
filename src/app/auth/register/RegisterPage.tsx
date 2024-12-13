@@ -12,6 +12,7 @@ import FieldPassword from "@/components/ui/field/FieldPassword";
 import { saveTokenStorage } from "@/services/auth-token.service";
 import { useRouter } from "next/navigation";
 import { DASHBOARD_PAGES } from "@/config/pages-url.config";
+import s from '../Login.module.scss'
 
 const RegisterPage = () => {
   const [register, { isLoading, error, data }] = useRegisterMutation();
@@ -31,8 +32,8 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto py-10">
-      <h1 className="text-2xl font-bold mb-6">Sing Up</h1>
+    <div className={s.auth}>
+      <h1 className={s.auth_title}>Sing Up</h1>
       <Form onSubmit={handleSubmit} methods={methods}>
         <Field
           className="w-full"
@@ -75,7 +76,7 @@ const RegisterPage = () => {
           }}
         />
         <Button
-          className="w-[200px]"
+          className={s.auth_button}
           type="submit"
           variant="contained"
           endIcon={isLoading ? <LoaderIcon className="animate-spin h-5" /> : ""}
@@ -83,8 +84,8 @@ const RegisterPage = () => {
           {!isLoading ? "Send" : ""}
         </Button>
       </Form>
-      <p className="flex gap-4 items-center text-gray-500">
-        <span>Already have an account?</span>
+      <p className={s.auth_link}>
+        <span className={s.auth_link_question}>Already have an account?</span>
         <span className="text-blue-600 underline">
           <Link href="/auth/login">Sign in</Link>
         </span>

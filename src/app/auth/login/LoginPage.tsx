@@ -11,8 +11,10 @@ import { saveTokenStorage } from "@/services/auth-token.service";
 import { useRouter } from "next/navigation";
 import { DASHBOARD_PAGES } from "@/config/pages-url.config";
 import Link from "next/link";
-
+import s from '../Login.module.scss';
 import FieldPassword from "@/components/ui/field/FieldPassword";
+import { useAppSelector } from "@/redux/store";
+import { selectColor } from "@/redux/slices/colorSlice";
 
 const LoginPage = () => {
   const { push } = useRouter();
@@ -20,8 +22,11 @@ const LoginPage = () => {
   const [login, { isLoading, error, data }] = useLoginMutation();
   const methods = useForm<Login>();
   const { reset } = methods;
+  const color = useAppSelector(selectColor)
 
   const handleSubmit = async (data: Login) => {
+
+
     try {
       const res = await login(data).unwrap();
       saveTokenStorage(res.accessToken, res.refreshToken);
@@ -33,8 +38,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto py-10">
-      <h1 className="text-2xl font-bold mb-6">Sing in</h1>
+    <div className={s.auth}>
+      <h1 className={s.auth_title}>Sing in</h1>
       <Form onSubmit={handleSubmit} methods={methods}>
         <Field
           name="email"
@@ -63,7 +68,7 @@ const LoginPage = () => {
           }}
         />
         <Button
-          className="w-[200px]"
+          className={s.auth_button}
           type="submit"
           variant="contained"
           endIcon={isLoading ? <LoaderIcon className="animate-spin h-5" /> : ""}
@@ -71,8 +76,8 @@ const LoginPage = () => {
           {!isLoading ? "Send" : ""}
         </Button>
       </Form>
-      <p className="flex gap-4 items-center text-gray-500">
-        <span>If you don't have an account yet?</span>
+      <p className={s.auth_link}>
+        <span className={s.auth_link_question}>If you don't have an account yet?</span>
         <span className="text-blue-600 underline">
           <Link href="/auth/register">Sign up</Link>
         </span>
