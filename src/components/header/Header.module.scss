@@ -28,9 +28,9 @@
         z-index: 99;
     }
     &_settings {
-        display: none;
+        display: none !important;
         @include media(992){
-            display: flex;
+            display: flex !important;
         }
     }
     &_buttons {
