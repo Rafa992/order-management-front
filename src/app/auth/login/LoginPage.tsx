@@ -42,12 +42,12 @@ const LoginPage = () => {
       reset();
       initialError(true, 'Вы успешно вошли в систему!', 'success');
       push(DASHBOARD_PAGES.HOME);
-    } catch (error) {
+    } catch (error: any) {
       const err = errorCatch(error);
       console.log('error', error);
       console.log('err', err);
       
-      initialError(true, err, 'error');
+      initialError(true, error.data.message, 'error');
       // if (error instanceof AxiosError) {
       //   initialError(true, `Ошибка: ${error.response?.data?.message || error.message}`, 'error');
       // } else if (error instanceof Error) {
