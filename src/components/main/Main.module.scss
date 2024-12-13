@@ -33,14 +33,14 @@
     }
     &_button {
         width: 200px;
-        background: var(--baseColor);
-        color: var(--whiteTextColor);
-        margin-top: 20px;
-        font-size: 16px;
-        font-weight: 700;
+        background: var(--baseColor) !important;
+        color: var(--whiteTextColor) !important;
+        margin-top: 20px !important;
+        font-size: 16px !important;
+        font-weight: 700 !important;
         @include media(400){
-            font-size: 12px;
-            width: 150px;
+            font-size: 12px !important;
+            width: 150px !important;
         }
     }
 }
