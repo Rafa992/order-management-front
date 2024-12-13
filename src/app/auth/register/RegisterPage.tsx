@@ -14,14 +14,24 @@ import { useRouter } from "next/navigation";
 import { DASHBOARD_PAGES } from "@/config/pages-url.config";
 import s from '../Auth.module.scss'
 import useInitialError from "@/hooks/error/useInitialError";
-import { AxiosError } from "axios";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { selectErrorMessage, selectErrorStatus, selectSeverity, setErrorStatus } from "@/redux/slices/errorSlice";
+import CustomSnackbar from "@/components/ui/customsComponents/CustomSnackbar";
 
 const RegisterPage = () => {
+
+  const dispatch = useAppDispatch();
   const [register, { isLoading, error, data }] = useRegisterMutation();
   const methods = useForm();
   const { push } = useRouter();
   const { reset } = methods;
+  
   const {initialError} = useInitialError();
+  const errorStatus = useAppSelector(selectErrorStatus);
+  const errorMessage = useAppSelector(selectErrorMessage);
+  const severity = useAppSelector(selectSeverity);
+
+  const handleCloseSnackbar = () => dispatch(setErrorStatus(false));
 
   const handleSubmit = async (data: Register) => {
     try {
@@ -30,14 +40,8 @@ const RegisterPage = () => {
       reset();
       initialError(true, 'Вы успешно вошли в систему!', 'success');
       push(DASHBOARD_PAGES.HOME);
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        initialError(true, `Ошибка: ${error.response?.data?.message || error.message}`, 'error');
-      } else if (error instanceof Error) {
-        initialError(true, `Ошибка: ${error.message}`, 'error');
-      } else {
-        initialError(true, 'Неизвестная ошибка', 'error');
-      }
+    } catch (error: any) {
+      initialError(true, error.data.message, 'error');
     }
   };
 
@@ -100,6 +104,14 @@ const RegisterPage = () => {
           <Link href="/auth/login">Sign in</Link>
         </span>
       </p>
+      <CustomSnackbar
+        message={errorMessage}
+        severity={severity}
+        open={errorStatus}
+        onClose={handleCloseSnackbar}
+        autoHideDuration={3000}
+        position={{ vertical: "bottom", horizontal: "right" }}
+      />
     </div>
   );
 };
