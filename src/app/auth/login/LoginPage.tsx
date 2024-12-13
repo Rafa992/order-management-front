@@ -18,6 +18,7 @@ import { AxiosError } from "axios";
 import CustomSnackbar from "@/components/ui/customsComponents/CustomSnackbar";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { selectErrorMessage, selectErrorStatus, selectSeverity, setErrorStatus } from "@/redux/slices/errorSlice";
+import {errorCatch} from '@/api/error'
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
@@ -42,13 +43,15 @@ const LoginPage = () => {
       initialError(true, 'Вы успешно вошли в систему!', 'success');
       push(DASHBOARD_PAGES.HOME);
     } catch (error) {
-      if (error instanceof AxiosError) {
-        initialError(true, `Ошибка: ${error.response?.data?.message || error.message}`, 'error');
-      } else if (error instanceof Error) {
-        initialError(true, `Ошибка: ${error.message}`, 'error');
-      } else {
-        initialError(true, 'Неизвестная ошибка', 'error');
-      }
+      const err = errorCatch(error);
+      initialError(true, err, 'success');
+      // if (error instanceof AxiosError) {
+      //   initialError(true, `Ошибка: ${error.response?.data?.message || error.message}`, 'error');
+      // } else if (error instanceof Error) {
+      //   initialError(true, `Ошибка: ${error.message}`, 'error');
+      // } else {
+      //   initialError(true, 'Неизвестная ошибка', 'error');
+      // }
     }
   };
 
