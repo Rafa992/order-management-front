@@ -23,7 +23,7 @@
         color: var(--baseColorText) !important;
         font-weight: 700;
         @include media(500){
-            font-size: 13px;
+            font-size: 13px !important;
         }
     }
     &_comment {
@@ -31,7 +31,7 @@
         font-weight: 400;
         color: var(--blackTextColor);
         @include media(500){
-            font-size: 11px;
+            font-size: 11px !important;
         }
     }
     &_rowBlock {
