@@ -61,7 +61,7 @@ const orderSlice = createSlice({
       state.checkedPaymentMethod = action.payload;
     },
     setAllOrders: (state, action: PayloadAction<IAllOrders[]>) => {
-      state.allOrders = action.payload;
+      state.allOrders = action.payload.reverse();
     },
     setFilteredOrders: (state, action: PayloadAction<IAllOrders[]>) => {
       state.filteredOrders = action.payload;
