@@ -13,18 +13,21 @@ import { saveTokenStorage } from "@/services/auth-token.service";
 import { useRouter } from "next/navigation";
 import { DASHBOARD_PAGES } from "@/config/pages-url.config";
 import s from '../Login.module.scss'
+import useInitialError from "@/hooks/error/useInitialError";
 
 const RegisterPage = () => {
   const [register, { isLoading, error, data }] = useRegisterMutation();
   const methods = useForm();
   const { push } = useRouter();
   const { reset } = methods;
+  const {initialError} = useInitialError();
 
   const handleSubmit = async (data: Register) => {
     try {
       const res = await register(data).unwrap();
       saveTokenStorage(res.accessToken, res.refreshToken);
       reset();
+      initialError(true, 'Вы успешно вошли в систему!', 'success');
       push(DASHBOARD_PAGES.HOME);
     } catch (error) {
       console.log("Error while trying to sign up", error);

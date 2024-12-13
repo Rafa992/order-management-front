@@ -15,6 +15,7 @@ import s from '../Login.module.scss';
 import FieldPassword from "@/components/ui/field/FieldPassword";
 import { useAppSelector } from "@/redux/store";
 import { selectColor } from "@/redux/slices/colorSlice";
+import useInitialError from "@/hooks/error/useInitialError";
 
 const LoginPage = () => {
   const { push } = useRouter();
@@ -22,7 +23,9 @@ const LoginPage = () => {
   const [login, { isLoading, error, data }] = useLoginMutation();
   const methods = useForm<Login>();
   const { reset } = methods;
-  const color = useAppSelector(selectColor)
+
+  const {initialError} = useInitialError();
+
 
   const handleSubmit = async (data: Login) => {
 
@@ -31,6 +34,7 @@ const LoginPage = () => {
       const res = await login(data).unwrap();
       saveTokenStorage(res.accessToken, res.refreshToken);
       reset();
+      initialError(true, 'Вы успешно вошли в систему!', 'success');
       push(DASHBOARD_PAGES.HOME);
     } catch (error) {
       console.log("Error while trying to login", error);
