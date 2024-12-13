@@ -30,7 +30,7 @@
     &_settings {
         display: none;
         @include media(992){
-            display: block;
+            display: flex;
         }
     }
     &_buttons {
