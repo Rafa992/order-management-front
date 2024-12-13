@@ -12,11 +12,11 @@
         color: var(--blackTextColor);
     }
     &_header {
-        font-size: 16px;
-        font-weight: 700;
+        font-size: 16px !important;
+        font-weight: 700 !important;
         color: var(--whiteTextColor) !important;
-        background: var(--baseColor);
-        white-space: nowrap;
+        background: var(--baseColor) !important;
+        white-space: nowrap !important;
     }
     &_title {
         color: var(--baseColorText) !important;
@@ -54,7 +54,7 @@
             gap: 10px;
             font-size: 11px;
             color: var(--blackTextColor);
-            white-space: nowrap;
+            white-space: nowrap !important;
         }
         &_time {
             line-height: 100%;
